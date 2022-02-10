@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="24e50a09-09a3-4282-b05c-573a026b3f81" name="lottery">
+        <fileTransfer rootFolder="/data/portainer/public" accessType="SFTP" host="101.200.88.237" port="22" sshConfigId="14b700c0-cc4a-4c94-bb35-9c824b3c51bc" sshConfig="root@101.200.88.237:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
