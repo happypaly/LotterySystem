@@ -5,10 +5,6 @@ import cn.itedus.lottery.domain.strategy.model.vo.AwardRateInfo;
 import java.util.List;
 
 /**
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
- * <p>
  * 抽奖算法接口
  */
 public interface IDrawAlgorithm {
@@ -16,7 +12,7 @@ public interface IDrawAlgorithm {
     /**
      * 程序启动时初始化概率元祖，在初始化完成后使用过程中不允许修改元祖数据
      * <p>
-     * 元祖数据作用在于讲百分比内(0.2、0.3、0.5)的数据，转换为一整条数组上分区数据，如下；
+     * 元祖数据作用在于将百分比内(0.2、0.3、0.5)的数据，转换为一整条数组上分区数据，如下；
      * 0.2 = 0 ~ 0.2
      * 0.3 = 0 + 0.2 ~ 0.2 + 0.3 = 0.2 ~ 0.5
      * 0.5 = 0.5 ~ 1 （计算方式同上）

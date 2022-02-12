@@ -8,10 +8,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
- * <p>
  * 共用的算法逻辑
  */
 public abstract class BaseAlgorithm implements IDrawAlgorithm {
@@ -33,10 +29,15 @@ public abstract class BaseAlgorithm implements IDrawAlgorithm {
         // 保存奖品概率信息
         awardRateInfoMap.put(strategyId, awardRateInfoList);
 
+        /**
+         * computeIfAbsent() 方法对 hashMap 中指定 key 的值进行重新计算，如果不存在这个 key，则添加到 hashMap 中。
+         * 语法：hashmap.computeIfAbsent(K key, Function remappingFunction)
+         */
         String[] rateTuple = rateTupleMap.computeIfAbsent(strategyId, k -> new String[RATE_TUPLE_LENGTH]);
 
         int cursorVal = 0;
         for (AwardRateInfo awardRateInfo : awardRateInfoList) {
+            // 将概率百分比转化为整数
             int rateVal = awardRateInfo.getAwardRate().multiply(new BigDecimal(100)).intValue();
 
             // 循环填充概率范围值

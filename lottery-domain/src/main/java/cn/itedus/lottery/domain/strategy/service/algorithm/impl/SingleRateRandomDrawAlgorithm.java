@@ -7,10 +7,6 @@ import java.security.SecureRandom;
 import java.util.List;
 
 /**
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
- * <p>
  * 【推荐】单项随机概率抽奖，抽到一个已经排掉的奖品则未中奖
  */
 @Component("singleRateRandomDrawAlgorithm")

@@ -7,6 +7,7 @@ import cn.itedus.lottery.infrastructure.po.StrategyDetail;
 import java.util.List;
 
 /**
+ *抽奖策略配置信息
  */
 public class StrategyRich {
 

@@ -10,10 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
- *
  * 必中奖策略抽奖，排掉已经中奖的概率，重新计算中奖范围
  */
 @Component("defaultRateRandomDrawAlgorithm")
@@ -26,6 +22,7 @@ public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
 
         // 排除掉不在抽奖范围的奖品ID集合
         List<AwardRateInfo> differenceAwardRateList = new ArrayList<>();
+        // 获取此策略下奖品的概率值
         List<AwardRateInfo> awardRateIntervalValList = awardRateInfoMap.get(strategyId);
         for (AwardRateInfo awardRateInfo : awardRateIntervalValList) {
             String awardId = awardRateInfo.getAwardId();
@@ -33,6 +30,7 @@ public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
                 continue;
             }
             differenceAwardRateList.add(awardRateInfo);
+            // 将未排除掉的奖品概率相加，并返回相加后的值
             differenceDenominator = differenceDenominator.add(awardRateInfo.getAwardRate());
         }
 
@@ -48,6 +46,7 @@ public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
         String awardId = "";
         int cursorVal = 0;
         for (AwardRateInfo awardRateInfo : differenceAwardRateList) {
+            //重新计算概率
             int rateVal = awardRateInfo.getAwardRate().divide(differenceDenominator, 2, BigDecimal.ROUND_UP).multiply(new BigDecimal(100)).intValue();
             if (randomVal <= (cursorVal + rateVal)) {
                 awardId = awardRateInfo.getAwardId();

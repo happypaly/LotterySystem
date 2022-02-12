@@ -19,14 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
  */
 @Service("drawExec")
 public class DrawExecImpl extends DrawBase implements IDrawExec {
 
     private Logger logger = LoggerFactory.getLogger(DrawExecImpl.class);
+
+    List<String> excludeAwardIds=new ArrayList<>();
 
     @Resource
     private IStrategyRepository strategyRepository;
@@ -35,9 +34,11 @@ public class DrawExecImpl extends DrawBase implements IDrawExec {
     public DrawResult doDrawExec(DrawReq req) {
         logger.info("执行策略抽奖开始，strategyId：{}", req.getStrategyId());
 
-        // 获取抽奖策略配置数据
+        // 获取抽奖策略配置数据 包括策略id、策略配置、策略明细
         StrategyRich strategyRich = strategyRepository.queryStrategyRich(req.getStrategyId());
+        // 获取策略配置
         Strategy strategy = strategyRich.getStrategy();
+        // 获取策略明细  包括奖品中奖概率
         List<StrategyDetail> strategyDetailList = strategyRich.getStrategyDetailList();
 
         // 校验和初始化数据
@@ -45,7 +46,9 @@ public class DrawExecImpl extends DrawBase implements IDrawExec {
 
         // 根据策略方式抽奖
         IDrawAlgorithm drawAlgorithm = drawAlgorithmMap.get(strategy.getStrategyMode());
-        String awardId = drawAlgorithm.randomDraw(req.getStrategyId(), new ArrayList<>());
+
+        String awardId = drawAlgorithm.randomDraw(req.getStrategyId(), excludeAwardIds);
+        excludeAwardIds.add(awardId);
 
         // 获取奖品信息
         Award award = strategyRepository.queryAwardInfo(awardId);
