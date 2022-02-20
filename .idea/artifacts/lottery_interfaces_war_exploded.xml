@@ -26,6 +26,7 @@
           <element id="archive" name="lottery-domain-1.0-SNAPSHOT.jar">
             <element id="module-output" name="lottery-domain" />
           </element>
+          <element id="library" level="project" name="Maven: cn.hutool:hutool-all:5.5.1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.2.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.2.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-web:2.3.5.RELEASE" />
