@@ -13,6 +13,12 @@
     <packaging>jar</packaging>
 
     <dependencies>
+
+        <dependency>
+            <groupId>cn.bugstack.middleware</groupId>
+            <artifactId>db-router-spring-boot-starter</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>cn.itedus.lottery</groupId>
             <artifactId>lottery-domain</artifactId>

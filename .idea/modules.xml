@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Lottery-Test/Lottery-Test.iml" filepath="$PROJECT_DIR$/../Lottery-Test/Lottery-Test.iml" />
       <module fileurl="file://$PROJECT_DIR$/LotterySystem.iml" filepath="$PROJECT_DIR$/LotterySystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../db-router-spring-boot-starter/db-router-spring-boot-starter.iml" filepath="$PROJECT_DIR$/../db-router-spring-boot-starter/db-router-spring-boot-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/lottery-application/lottery-application.iml" filepath="$PROJECT_DIR$/lottery-application/lottery-application.iml" />
       <module fileurl="file://$PROJECT_DIR$/lottery-common/lottery-common.iml" filepath="$PROJECT_DIR$/lottery-common/lottery-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/lottery-domain/lottery-domain.iml" filepath="$PROJECT_DIR$/lottery-domain/lottery-domain.iml" />
