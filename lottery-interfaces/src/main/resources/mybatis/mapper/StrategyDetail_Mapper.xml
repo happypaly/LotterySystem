@@ -20,5 +20,22 @@
         WHERE strategyId = #{strategyId} AND awardId = #{awardId} AND awardSurplusCount > 0
     </update>
 
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO strategy_detail(strategyId, awardId, awardName, awardCount, awardSurplusCount,
+        awardRate, createTime, updateTime)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.strategyId},
+            #{item.awardId},
+            #{item.awardName},
+            #{item.awardCount},
+            #{item.awardSurplusCount},
+            #{item.awardRate},
+            NOW(),
+            NOW()
+            )
+        </foreach>
+    </insert>
 
 </mapper>

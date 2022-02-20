@@ -10,4 +10,11 @@
         WHERE strategyId = #{strategyId}
     </select>
 
+    <insert id="insert" parameterType="cn.itedus.lottery.infrastructure.po.Strategy">
+        INSERT INTO strategy(strategyId, strategyDesc, strategyMode, grantType,
+        grantDate, extInfo, createTime, updateTime)
+        VALUES(#{strategyId}, #{strategyDesc}, #{strategyMode}, #{grantType},
+        #{grantDate}, #{extInfo}, NOW(), NOW())
+    </insert>
+
 </mapper>

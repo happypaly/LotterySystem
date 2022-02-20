@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * 策略表数据库操作
+ * 策略明细表DAO
  */
 @Mapper
 public interface IStrategyDetailDao {
@@ -32,4 +32,10 @@ public interface IStrategyDetailDao {
      */
     int deductStock(StrategyDetail strategyDetailReq);
 
+    /**
+     * 插入策略配置组
+     *
+     * @param list 策略配置组
+     */
+    void insertList(List<StrategyDetail> list);
 }

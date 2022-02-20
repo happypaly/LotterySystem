@@ -9,4 +9,19 @@
         WHERE awardId = #{awardId}
     </select>
 
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO award(awardId, awardType, awardName, awardContent, createTime, updateTime)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.awardId},
+            #{item.awardType},
+            #{item.awardName},
+            #{item.awardContent},
+            NOW(),
+            NOW()
+            )
+        </foreach>
+    </insert>
+
 </mapper>
