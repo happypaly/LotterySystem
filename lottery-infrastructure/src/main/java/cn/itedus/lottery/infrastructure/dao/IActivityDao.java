@@ -32,4 +32,11 @@ public interface IActivityDao {
      * @return 更新数量
      */
     int alterState(AlterStateVO alterStateVO);
+
+    /**
+     * 扣减活动库存
+     * @param activityId 活动ID
+     * @return 更新数量
+     */
+    int subtractionActivityStock(Long activityId);
 }

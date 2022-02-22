@@ -5,15 +5,15 @@
     <insert id="insert" parameterType="cn.itedus.lottery.infrastructure.po.Activity">
         INSERT INTO activity
         (activityId, activityName, activityDesc,beginDateTime, endDateTime,
-        stockCount, takeCount, state, creator, createTime, updateTime)
+        stockCount, stockSurplusCount, takeCount, strategyId, state, creator, createTime, updateTime)
         VALUES
         (#{activityId}, #{activityName}, #{activityDesc},#{beginDateTime}, #{endDateTime},
-         #{stockCount}, #{takeCount}, #{state}, #{creator}, now(), now())
+         #{stockCount}, #{stockSurplusCount}, #{takeCount}, #{strategyId}, #{state}, #{creator}, now(), now())
     </insert>
 
     <select id="queryActivityById" parameterType="java.lang.Long" resultType="cn.itedus.lottery.infrastructure.po.Activity">
         SELECT activityId, activityName, activityDesc,beginDateTime, endDateTime,
-        stockCount, takeCount, state, creator, createTime, updateTime
+        stockCount, stockSurplusCount, takeCount, strategyId, state, creator, createTime, updateTime
         FROM activity
         WHERE activityId = #{activityId}
     </select>
@@ -22,6 +22,11 @@
         UPDATE activity
         SET state = #{afterState}
         WHERE activityId = #{activityId} AND state = #{beforeState}
+    </update>
+
+    <update id="subtractionActivityStock" parameterType="java.lang.Long">
+        UPDATE activity SET stockSurplusCount = stockSurplusCount - 1
+        WHERE activityId = #{activityId} AND stockSurplusCount > 0
     </update>
 
 </mapper>
