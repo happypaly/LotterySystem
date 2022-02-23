@@ -38,6 +38,13 @@
         </dependency>
 
         <dependency>
+            <groupId>cn.itedus.lottery</groupId>
+            <artifactId>lottery-application</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
