@@ -32,25 +32,77 @@ public class Constants {
     }
 
     /**
+     * 全局属性
+     */
+    public static final class Global {
+        /** 空节点值 */
+        public static final Long TREE_NULL_NODE = 0L;
+    }
+
+    /**
+     * 决策树节点
+     */
+    public static final class NodeType{
+        /** 树茎 */
+        public static final Integer STEM = 1;
+        /** 果实 */
+        public static final Integer FRUIT = 2;
+    }
+
+    /**
+     * 规则限定类型
+     */
+    public static final class RuleLimitType {
+        /** 等于 */
+        public static final int EQUAL = 1;
+        /** 大于 */
+        public static final int GT = 2;
+        /** 小于 */
+        public static final int LT = 3;
+        /** 大于&等于 */
+        public static final int GE = 4;
+        /** 小于&等于 */
+        public static final int LE = 5;
+        /** 枚举 */
+        public static final int ENUM = 6;
+    }
+
+    /**
      * 活动状态：1编辑、2提审、3撤审、4通过、5运行(审核通过后worker扫描状态)、6拒绝、7关闭、8开启
      */
     public enum ActivityState {
 
-        /** 1：编辑 */
+        /**
+         * 1：编辑
+         */
         EDIT(1, "编辑"),
-        /** 2：提审 */
+        /**
+         * 2：提审
+         */
         ARRAIGNMENT(2, "提审"),
-        /** 3：撤审 */
+        /**
+         * 3：撤审
+         */
         REVOKE(3, "撤审"),
-        /** 4：通过 */
+        /**
+         * 4：通过
+         */
         PASS(4, "通过"),
-        /** 5：运行(活动中) */
+        /**
+         * 5：运行(活动中)
+         */
         DOING(5, "运行(活动中)"),
-        /** 6：拒绝 */
+        /**
+         * 6：拒绝
+         */
         REFUSE(6, "拒绝"),
-        /** 7：关闭 */
+        /**
+         * 7：关闭
+         */
         CLOSE(7, "关闭"),
-        /** 8：开启 */
+        /**
+         * 8：开启
+         */
         OPEN(8, "开启");
 
         private Integer code;
@@ -128,7 +180,7 @@ public class Constants {
         /**
          * 未中奖
          */
-        FAIL(0,"未中奖"),
+        FAIL(0, "未中奖"),
 
         /**
          * 已中奖
@@ -138,7 +190,7 @@ public class Constants {
         /**
          * 兜底奖
          */
-        Cover(2,"兜底奖");
+        Cover(2, "兜底奖");
 
         private Integer code;
         private String info;
@@ -260,11 +312,17 @@ public class Constants {
      * Ids 生成策略枚举
      */
     public enum Ids {
-        /** 雪花算法 */
+        /**
+         * 雪花算法
+         */
         SnowFlake,
-        /** 日期算法 */
+        /**
+         * 日期算法
+         */
         ShortCode,
-        /** 随机算法 */
+        /**
+         * 随机算法
+         */
         RandomNumeric;
     }
 
@@ -301,7 +359,6 @@ public class Constants {
         }
     }
 
-
     /**
      * 发奖状态 0初始、1完成、2失败
      */
@@ -335,5 +392,4 @@ public class Constants {
             this.info = info;
         }
     }
-
 }
