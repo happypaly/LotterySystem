@@ -147,6 +147,28 @@
             <version>1.4.10</version>
         </dependency>
 
+        <!-- MapStruct begin -->
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.4.2.Final</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.4.2.Final</version>
+        </dependency>
+        <!-- MapStruct end -->
+
+        <!-- 自研路由组件，下载构建：https://codechina.csdn.net/KnowledgePlanet/db-router-spring-boot-starter -->
+<!--        <dependency>-->
+<!--            <groupId>cn.bugstack.middleware</groupId>-->
+<!--            <artifactId>db-router-spring-boot-starter</artifactId>-->
+<!--            <version>1.0.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
     </dependencies>
 
     <build>

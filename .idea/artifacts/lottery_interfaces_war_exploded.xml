@@ -48,6 +48,9 @@
           <element id="library" level="project" name="Maven: cn.hutool:hutool-all:5.5.1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.2.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.2.10.RELEASE" />
+          <element id="archive" name="lottery-application-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="lottery-application" />
+          </element>
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-web:2.3.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-json:2.3.5.RELEASE" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.3" />
@@ -81,6 +84,8 @@
           <element id="library" level="project" name="Maven: org.apache.dubbo:dubbo-spring-boot-starter:2.7.1" />
           <element id="library" level="project" name="Maven: org.apache.dubbo:dubbo-spring-boot-autoconfigure:2.7.1" />
           <element id="library" level="project" name="Maven: org.apache.dubbo:dubbo-spring-boot-autoconfigure-compatible:2.7.1" />
+          <element id="library" level="project" name="Maven: org.mapstruct:mapstruct:1.4.2.Final" />
+          <element id="library" level="project" name="Maven: org.mapstruct:mapstruct-processor:1.4.2.Final" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-thymeleaf:2.3.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring5:3.0.11.RELEASE" />
           <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:3.0.11.RELEASE" />

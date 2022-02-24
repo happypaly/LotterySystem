@@ -1,6 +1,7 @@
 package cn.itedus.lottery.domain.strategy.service.algorithm;
 
-import cn.itedus.lottery.domain.strategy.model.vo.AwardRateInfo;
+import cn.itedus.lottery.common.Constants;
+import cn.itedus.lottery.domain.strategy.model.vo.AwardRateVO;
 
 import java.math.BigDecimal;
 import java.security.SecureRandom;
@@ -13,32 +14,46 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public abstract class BaseAlgorithm implements IDrawAlgorithm {
 
-    // 斐波那契散列增量，逻辑：黄金分割点：(√5 - 1) / 2 = 0.6180339887，Math.pow(2, 32) * 0.6180339887 = 0x61c88647
+    /**
+     * 斐波那契散列增量，逻辑：黄金分割点：(√5 - 1) / 2 = 0.6180339887，Math.pow(2, 32) * 0.6180339887 = 0x61c88647
+     */
     private final int HASH_INCREMENT = 0x61c88647;
 
-    // 数组初始化长度
+    /**
+     * 数组初始化长度 128，保证数据填充时不发生碰撞的最小初始化值
+     */
     private final int RATE_TUPLE_LENGTH = 128;
 
-    // 存放概率与奖品对应的散列结果，strategyId -> rateTuple
+    /**
+     * 存放概率与奖品对应的散列结果，strategyId -> rateTuple
+     */
     protected Map<Long, String[]> rateTupleMap = new ConcurrentHashMap<>();
 
-    // 奖品区间概率值，strategyId -> [awardId->begin、awardId->end]
-    protected Map<Long, List<AwardRateInfo>> awardRateInfoMap = new ConcurrentHashMap<>();
+    /**
+     * 奖品区间概率值，strategyId -> [awardId->begin、awardId->end]
+     */
+    protected Map<Long, List<AwardRateVO>> awardRateInfoMap = new ConcurrentHashMap<>();
 
     @Override
-    public void initRateTuple(Long strategyId, List<AwardRateInfo> awardRateInfoList) {
+    public synchronized void initRateTuple(Long strategyId, Integer strategyMode, List<AwardRateVO> awardRateInfoList) {
+
+        // 前置判断
+        if (isExist(strategyId)){
+            return;
+        }
+
         // 保存奖品概率信息
         awardRateInfoMap.put(strategyId, awardRateInfoList);
 
-        /**
-         * computeIfAbsent() 方法对 hashMap 中指定 key 的值进行重新计算，如果不存在这个 key，则添加到 hashMap 中。
-         * 语法：hashmap.computeIfAbsent(K key, Function remappingFunction)
-         */
+        // 非单项概率，不必存入缓存，因为这部分抽奖算法需要实时处理中奖概率。
+        if (!Constants.StrategyMode.SINGLE.getCode().equals(strategyMode)) {
+            return;
+        }
+
         String[] rateTuple = rateTupleMap.computeIfAbsent(strategyId, k -> new String[RATE_TUPLE_LENGTH]);
 
         int cursorVal = 0;
-        for (AwardRateInfo awardRateInfo : awardRateInfoList) {
-            // 将概率百分比转化为整数
+        for (AwardRateVO awardRateInfo : awardRateInfoList) {
             int rateVal = awardRateInfo.getAwardRate().multiply(new BigDecimal(100)).intValue();
 
             // 循环填充概率范围值
@@ -52,8 +67,8 @@ public abstract class BaseAlgorithm implements IDrawAlgorithm {
     }
 
     @Override
-    public boolean isExistRateTuple(Long strategyId) {
-        return rateTupleMap.containsKey(strategyId);
+    public boolean isExist(Long strategyId) {
+        return awardRateInfoMap.containsKey(strategyId);
     }
 
     /**
@@ -69,11 +84,11 @@ public abstract class BaseAlgorithm implements IDrawAlgorithm {
 
     /**
      * 生成百位随机抽奖码
-     * @param bound
-     * @return
+     *
+     * @return 随机值
      */
-    protected int generateSecureRandomIntCode(int bound){
-        return new SecureRandom().nextInt(bound)+1;
+    protected int generateSecureRandomIntCode(int bound) {
+        return new SecureRandom().nextInt(bound) + 1;
     }
 
 }
