@@ -29,4 +29,12 @@
         WHERE activityId = #{activityId} AND stockSurplusCount > 0
     </update>
 
+    <select id="scanToDoActivityList" parameterType="java.lang.Long" resultType="cn.itedus.lottery.infrastructure.po.Activity">
+        SELECT activityId, activityName, beginDateTime, endDateTime, state, creator
+        FROM activity
+        WHERE id >= #{id} AND state in (4,5)
+        ORDER BY ID ASC
+        LIMIT 10
+    </select>
+
 </mapper>

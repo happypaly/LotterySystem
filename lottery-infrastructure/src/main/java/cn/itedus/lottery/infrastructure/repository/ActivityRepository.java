@@ -69,7 +69,7 @@ public class ActivityRepository implements IActivityRepository {
 
     @Override
     public boolean alterStatus(Long activityId, Enum<Constants.ActivityState> beforeState, Enum<Constants.ActivityState> afterState) {
-        AlterStateVO alterStateVO = new AlterStateVO(activityId,((Constants.ActivityState) beforeState).getCode(),((Constants.ActivityState) afterState).getCode());
+        AlterStateVO alterStateVO = new AlterStateVO(activityId, ((Constants.ActivityState) beforeState).getCode(), ((Constants.ActivityState) afterState).getCode());
         int count = activityDao.alterState(alterStateVO);
         return 1 == count;
     }
@@ -107,4 +107,20 @@ public class ActivityRepository implements IActivityRepository {
         return activityDao.subtractionActivityStock(activityId);
     }
 
+    @Override
+    public List<ActivityVO> scanToDoActivityList(Long id) {
+        List<Activity> activityList = activityDao.scanToDoActivityList(id);
+        List<ActivityVO> activityVOList = new ArrayList<>(activityList.size());
+        for (Activity activity : activityList) {
+            ActivityVO activityVO = new ActivityVO();
+            activityVO.setId(activity.getId());
+            activityVO.setActivityId(activity.getActivityId());
+            activityVO.setActivityName(activity.getActivityName());
+            activityVO.setBeginDateTime(activity.getBeginDateTime());
+            activityVO.setEndDateTime(activity.getEndDateTime());
+            activityVO.setState(activity.getState());
+            activityVOList.add(activityVO);
+        }
+        return activityVOList;
+    }
 }

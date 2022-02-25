@@ -62,7 +62,6 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.2.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.2.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.2.10.RELEASE" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.7" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.2.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.2.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4" />
@@ -93,6 +92,11 @@
           <element id="library" level="project" name="Maven: com.github.luben:zstd-jni:1.4.4-7" />
           <element id="library" level="project" name="Maven: org.lz4:lz4-java:1.7.1" />
           <element id="library" level="project" name="Maven: org.xerial.snappy:snappy-java:1.1.7.3" />
+          <element id="archive" name="xxl-job-core-2.3.0.jar">
+            <element id="module-output" name="xxl-job-core" />
+          </element>
+          <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy:2.5.13" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.7" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-thymeleaf:2.3.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring5:3.0.11.RELEASE" />
           <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:3.0.11.RELEASE" />

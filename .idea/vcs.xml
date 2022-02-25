@@ -9,5 +9,6 @@
     <mapping directory="$PROJECT_DIR$/../Lottery-Test" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../db-router-spring-boot-starter" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../xxl-job" vcs="Git" />
   </component>
 </project>
