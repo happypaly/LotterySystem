@@ -2,6 +2,7 @@ package cn.itedus.lottery.infrastructure.repository;
 
 import cn.itedus.lottery.common.Constants;
 import cn.itedus.lottery.domain.activity.model.vo.DrawOrderVO;
+import cn.itedus.lottery.domain.activity.model.vo.InvoiceVO;
 import cn.itedus.lottery.domain.activity.model.vo.UserTakeActivityVO;
 import cn.itedus.lottery.domain.activity.repository.IUserTakeActivityRepository;
 import cn.itedus.lottery.infrastructure.dao.IUserStrategyExportDao;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @description: 用户参与活动仓储
@@ -129,6 +132,25 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
         userStrategyExport.setOrderId(orderId);
         userStrategyExport.setMqState(mqState);
         userStrategyExportDao.updateInvoiceMqState(userStrategyExport);
+    }
+
+    @Override
+    public List<InvoiceVO> scanInvoiceMqState() {
+        // 查询发送MQ失败和超时30分钟，未发送MQ的数据
+        List<UserStrategyExport> userStrategyExportList = userStrategyExportDao.scanInvoiceMqState();
+        // 转换对象
+        List<InvoiceVO> invoiceVOList = new ArrayList<>(userStrategyExportList.size());
+        for (UserStrategyExport userStrategyExport : userStrategyExportList) {
+            InvoiceVO invoiceVO = new InvoiceVO();
+            invoiceVO.setuId(userStrategyExport.getuId());
+            invoiceVO.setOrderId(userStrategyExport.getOrderId());
+            invoiceVO.setAwardId(userStrategyExport.getAwardId());
+            invoiceVO.setAwardType(userStrategyExport.getAwardType());
+            invoiceVO.setAwardName(userStrategyExport.getAwardName());
+            invoiceVO.setAwardContent(userStrategyExport.getAwardContent());
+            invoiceVOList.add(invoiceVO);
+        }
+        return invoiceVOList;
     }
 
 }
