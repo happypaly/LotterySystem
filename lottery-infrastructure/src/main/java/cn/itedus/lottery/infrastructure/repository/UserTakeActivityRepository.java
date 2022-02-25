@@ -32,7 +32,7 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
     private IUserStrategyExportDao userStrategyExportDao;
 
     @Override
-    public int subtractionLeftCount(Long activityId, String activityName, Integer takeCount, Integer userTakeLeftCount, String uId, Date partakeDate) {
+    public int subtractionLeftCount(Long activityId, String activityName, Integer takeCount, Integer userTakeLeftCount, String uId) {
         if (null == userTakeLeftCount) {
             UserTakeActivityCount userTakeActivityCount = new UserTakeActivityCount();
             userTakeActivityCount.setuId(uId);
@@ -94,7 +94,8 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
         userStrategyExport.setAwardType(drawOrder.getAwardType());
         userStrategyExport.setAwardName(drawOrder.getAwardName());
         userStrategyExport.setAwardContent(drawOrder.getAwardContent());
-        userStrategyExport.setUuid(String.valueOf(drawOrder.getOrderId()));
+        userStrategyExport.setUuid(String.valueOf(drawOrder.getTakeId()));
+        userStrategyExport.setMqState(Constants.MQState.INIT.getCode());
 
         userStrategyExportDao.insert(userStrategyExport);
     }
@@ -119,6 +120,15 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
         userTakeActivityVO.setState(noConsumedTakeActivityOrder.getState());
 
         return userTakeActivityVO;
+    }
+
+    @Override
+    public void updateInvoiceMqState(String uId, Long orderId, Integer mqState) {
+        UserStrategyExport userStrategyExport = new UserStrategyExport();
+        userStrategyExport.setuId(uId);
+        userStrategyExport.setOrderId(orderId);
+        userStrategyExport.setMqState(mqState);
+        userStrategyExportDao.updateInvoiceMqState(userStrategyExport);
     }
 
 }

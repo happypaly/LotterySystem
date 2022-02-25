@@ -15,11 +15,11 @@ import java.util.Optional;
  * @description: 消息消费者
  */
 @Component
-public class KafkaConsumer {
+public class KafkaConsumerTest {
 
-    private Logger logger = LoggerFactory.getLogger(KafkaConsumer.class);
+    private Logger logger = LoggerFactory.getLogger(KafkaConsumerTest.class);
 
-    @KafkaListener(topics = KafkaProducer.TOPIC_TEST, groupId = KafkaProducer.TOPIC_GROUP)
+    @KafkaListener(topics = KafkaProducerTest.TOPIC_TEST, groupId = KafkaProducerTest.TOPIC_GROUP)
     public void topicTest(ConsumerRecord<?, ?> record, Acknowledgment ack, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
         Optional<?> message = Optional.ofNullable(record.value());
         if (message.isPresent()) {

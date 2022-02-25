@@ -15,9 +15,9 @@ import javax.annotation.Resource;
  * @description: 消息生产者
  */
 @Component
-public class KafkaProducer {
+public class KafkaProducerTest {
 
-    private Logger logger = LoggerFactory.getLogger(KafkaProducer.class);
+    private Logger logger = LoggerFactory.getLogger(KafkaProducerTest.class);
 
     @Resource
     private KafkaTemplate<String, Object> kafkaTemplate;

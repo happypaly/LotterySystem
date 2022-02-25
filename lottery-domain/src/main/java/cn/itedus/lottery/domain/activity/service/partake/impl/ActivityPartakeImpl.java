@@ -87,7 +87,7 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
             return transactionTemplate.execute(status -> {
                 try {
                     // 扣减个人已参与次数
-                    int updateCount = userTakeActivityRepository.subtractionLeftCount(bill.getActivityId(), bill.getActivityName(), bill.getTakeCount(), bill.getUserTakeLeftCount(), partake.getuId(), partake.getPartakeDate());
+                    int updateCount = userTakeActivityRepository.subtractionLeftCount(bill.getActivityId(), bill.getActivityName(), bill.getTakeCount(), bill.getUserTakeLeftCount(), partake.getuId());
                     if (0 == updateCount) {
                         status.setRollbackOnly();
                         logger.error("领取活动，扣减个人已参与次数失败 activityId：{} uId：{}", partake.getActivityId(), partake.getuId());
@@ -135,6 +135,11 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
             dbRouter.clear();
         }
 
+    }
+
+    @Override
+    public void updateInvoiceMqState(String uId, Long orderId, Integer mqState) {
+        userTakeActivityRepository.updateInvoiceMqState(uId, orderId, mqState);
     }
 
 }
